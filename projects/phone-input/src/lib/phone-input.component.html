@@ -1,9 +1,9 @@
 <div class="input-group">
   <div class="input-group-prepend">
-    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-    (click)="toggleMenu()">
-    <span class="mr-1">?</span>
-  </button>
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false" (click)="toggleMenu()">
+      <span class="mr-1">?</span>
+    </button>
     <div #menu class="dropdown-menu">
       <button class="dropdown-item" type="button" *ngFor="let country of ['gr','tr','gb','de']">
         <span class="flag-icon" [ngClass]="'flag-icon-' + country"></span>

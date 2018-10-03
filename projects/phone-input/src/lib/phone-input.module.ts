@@ -3,10 +3,8 @@ import { PhoneInputComponent } from './phone-input.component';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [PhoneInputComponent],
   exports: [PhoneInputComponent]
 })
-export class PhoneInputModule { }
+export class PhoneInputModule {}
