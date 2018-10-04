@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, Renderer2, HostListener, ElementRef } fro
 @Component({
   selector: 'ngx-phone-input',
   templateUrl: './phone-input.component.html',
-  styles: []
+  styleUrls: ['./phone-input.component.scss']
 })
 export class PhoneInputComponent implements OnInit {
 
@@ -12,7 +12,6 @@ export class PhoneInputComponent implements OnInit {
   public onClick(targetElement) {
     const clickedInside = this.elementRef.nativeElement.contains(targetElement);
     if (!clickedInside && this.menu.nativeElement.classList.contains('show')) {
-
         this.renderer.removeClass(this.menu.nativeElement, 'show');
       }
     }
