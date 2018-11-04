@@ -126,7 +126,7 @@
         }
       }
     },
-    "phone-input": {
+    "ngx-phone-input": {
       "root": "projects/phone-input",
       "sourceRoot": "projects/phone-input/src",
       "projectType": "library",

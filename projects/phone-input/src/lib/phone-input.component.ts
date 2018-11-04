@@ -18,8 +18,10 @@ export class PhoneInputComponent implements OnInit {
   menu;
   @HostListener('document:click', ['$event.target'])
   public onClick(targetElement) {
-    const clickedInside = this.elementRef.nativeElement.contains(targetElement);
-    if (!clickedInside && this.menu.nativeElement.classList.contains('show')) {
+    if (
+      !this.elementRef.nativeElement.contains(targetElement) &&
+      this.menu.nativeElement.classList.contains('show')
+    ) {
       this.renderer.removeClass(this.menu.nativeElement, 'show');
     }
   }
