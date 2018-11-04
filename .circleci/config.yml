@@ -38,7 +38,7 @@ jobs:
       # Test the source code
       - run:
           name: Testing
-          command: npm run test-ci
+          command: npm run test:ci
       # Build project with different configuration based on
       # the current branch
       - run:
@@ -49,7 +49,7 @@ jobs:
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
                 npm run build-prod
             else
-                npm run build-ci
+                npm run build:ci
             fi
       # Cache the dist folder for the deploy job
       - save_cache:
