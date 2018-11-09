@@ -6,7 +6,11 @@ import {
   HostListener,
   ElementRef
 } from '@angular/core';
-import { parsePhoneNumber, AsYouType, CountryCode } from 'libphonenumber-js';
+import {
+  parsePhoneNumber,
+  AsYouType,
+  getCountryCallingCode
+} from 'libphonenumber-js';
 import { COUNTRY_CODES } from './data';
 
 @Component({
@@ -17,7 +21,7 @@ import { COUNTRY_CODES } from './data';
 export class PhoneInputComponent implements OnInit {
   public countryCodes: Array<string> = COUNTRY_CODES;
   public selectedCountry;
-  public phoneNumber: string;
+  public phoneNumber = '';
   @ViewChild('menu')
   menu;
   @HostListener('document:click', ['$event.target'])
@@ -32,19 +36,11 @@ export class PhoneInputComponent implements OnInit {
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {}
 
-  ngOnInit() {
-    const phoneNumber = parsePhoneNumber('+905532143599');
-
-    console.log('phoneNumber', phoneNumber);
-    console.log('formatInternational', phoneNumber.formatInternational());
-    console.log('formatNational', phoneNumber.formatNational());
-    console.log('getURI', phoneNumber.getURI());
-    console.log('CountryCode');
-    console.log('asYouType', new AsYouType('TR').input('2133734'));
-  }
+  ngOnInit() {}
 
   pickCountry(country) {
     this.selectedCountry = country;
+    this.phoneNumberChanged(this.phoneNumber);
     this.closeMenu();
   }
 
@@ -68,9 +64,30 @@ export class PhoneInputComponent implements OnInit {
     return country === this.selectedCountry;
   }
 
+  getCountryCallingCode(country) {
+    return getCountryCallingCode(country.toUpperCase());
+  }
+
   phoneNumberChanged(number: string) {
     if (this.selectedCountry) {
-      this.phoneNumber = new AsYouType(this.selectedCountry).input(number);
+      const asYouType = new AsYouType(this.selectedCountry.toUpperCase());
+      this.phoneNumber = asYouType.input(number);
+      try {
+        const phoneNumber = parsePhoneNumber(asYouType.getNumber().number);
+        console.log('phoneNumber', phoneNumber);
+        console.log('formatInternational', phoneNumber.formatInternational());
+        console.log('formatNational', phoneNumber.formatNational());
+        console.log('getURI', phoneNumber.getURI());
+        console.log('CountryCode');
+        console.log(
+          'asYouType',
+          new AsYouType(this.selectedCountry.toUpperCase()).input(
+            phoneNumber.getURI()
+          )
+        );
+      } catch (error) {
+        console.log('error', error);
+      }
     }
   }
 }

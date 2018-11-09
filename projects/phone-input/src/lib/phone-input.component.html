@@ -10,9 +10,10 @@
         (keyup.enter)="pickCountry(countryCode)" type="button" *ngFor="let countryCode of countryCodes">
         <span class="flag-icon" [ngClass]="'flag-icon-' + countryCode"></span>
         <span class="ml-2">{{countryCode}}</span>
+        <span class="ml-2 phone-code">+{{getCountryCallingCode(countryCode)}}</span>
       </button>
     </div>
   </div>
-  <input type="text" (ngModel)="phoneNumber" (keyup)="phoneNumberChanged($event.target.value)" class="form-control"
+  <input type="text" [value]="phoneNumber" (keyup)="phoneNumberChanged($event.target.value)" class="form-control"
     aria-label="Text input with dropdown button">
 </div>
