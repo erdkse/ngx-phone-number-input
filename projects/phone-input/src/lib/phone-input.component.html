@@ -1,17 +1,18 @@
 <div class="input-group">
   <div class="input-group-prepend">
-    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
-      aria-expanded="false" (click)="toggleMenu()">
+    <button class="btn btn-selected" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      (click)="toggleMenu()">
       <span *ngIf="selectedCountry" class="flag-icon mr-1" [ngClass]="'flag-icon-' + selectedCountry"></span>
       <span *ngIf="!selectedCountry" class="mr-1">?</span>
     </button>
     <div #menu class="dropdown-menu">
-      <button class="dropdown-item" (click)="pickCountry(country)" (keyup.enter)="pickCountry(country)" type="button"
-        *ngFor="let country of ['gr','tr','gb','de']">
-        <span class="flag-icon" [ngClass]="'flag-icon-' + country"></span>
-        <span class="ml-2">{{country}}</span>
+      <button class="dropdown-item" [ngClass]="{'selected': isCountrySelected(countryCode)}" (click)="pickCountry(countryCode)"
+        (keyup.enter)="pickCountry(countryCode)" type="button" *ngFor="let countryCode of countryCodes">
+        <span class="flag-icon" [ngClass]="'flag-icon-' + countryCode"></span>
+        <span class="ml-2">{{countryCode}}</span>
       </button>
     </div>
   </div>
-  <input type="text" class="form-control" aria-label="Text input with dropdown button">
+  <input type="text" (ngModel)="phoneNumber" (keyup)="phoneNumberChanged($event.target.value)" class="form-control"
+    aria-label="Text input with dropdown button">
 </div>

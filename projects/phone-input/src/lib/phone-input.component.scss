@@ -1,8 +1,24 @@
+.btn-selected {
+  background-color: transparent;
+  border: 1px solid #ced4da;
+  min-width: 52px;
+  max-width: 52px;
+}
+
 .dropdown-menu {
   min-width: 14rem;
   padding: 0;
+  max-height: 300px;
+  overflow-y: scroll;
+
   .dropdown-item {
     padding: 0.25rem 0.75rem;
     cursor: pointer;
   }
+}
+
+.selected {
+  color: #fff;
+  text-decoration: none;
+  background-color: #007bff;
 }

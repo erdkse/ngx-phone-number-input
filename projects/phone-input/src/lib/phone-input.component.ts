@@ -6,6 +6,8 @@ import {
   HostListener,
   ElementRef
 } from '@angular/core';
+import { parsePhoneNumber, AsYouType, CountryCode } from 'libphonenumber-js';
+import { COUNTRY_CODES } from './data';
 
 @Component({
   selector: 'ngx-phone-input',
@@ -13,7 +15,9 @@ import {
   styleUrls: ['./phone-input.component.scss']
 })
 export class PhoneInputComponent implements OnInit {
+  public countryCodes: Array<string> = COUNTRY_CODES;
   public selectedCountry;
+  public phoneNumber: string;
   @ViewChild('menu')
   menu;
   @HostListener('document:click', ['$event.target'])
@@ -28,7 +32,16 @@ export class PhoneInputComponent implements OnInit {
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const phoneNumber = parsePhoneNumber('+905532143599');
+
+    console.log('phoneNumber', phoneNumber);
+    console.log('formatInternational', phoneNumber.formatInternational());
+    console.log('formatNational', phoneNumber.formatNational());
+    console.log('getURI', phoneNumber.getURI());
+    console.log('CountryCode');
+    console.log('asYouType', new AsYouType('TR').input('2133734'));
+  }
 
   pickCountry(country) {
     this.selectedCountry = country;
@@ -49,5 +62,15 @@ export class PhoneInputComponent implements OnInit {
 
   openMenu() {
     this.renderer.addClass(this.menu.nativeElement, 'show');
+  }
+
+  isCountrySelected(country): boolean {
+    return country === this.selectedCountry;
+  }
+
+  phoneNumberChanged(number: string) {
+    if (this.selectedCountry) {
+      this.phoneNumber = new AsYouType(this.selectedCountry).input(number);
+    }
   }
 }
