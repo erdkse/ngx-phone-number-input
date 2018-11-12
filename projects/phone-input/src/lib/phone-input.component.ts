@@ -86,7 +86,6 @@ export class PhoneInputComponent implements OnInit {
           )
         );
       } catch (error) {
-        console.log('error', error);
       }
     }
   }
