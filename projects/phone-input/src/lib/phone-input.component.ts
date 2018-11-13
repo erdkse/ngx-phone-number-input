@@ -6,6 +6,12 @@ import {
   HostListener,
   ElementRef
 } from '@angular/core';
+import {
+  parsePhoneNumber,
+  AsYouType,
+  getCountryCallingCode
+} from 'libphonenumber-js';
+import { COUNTRY_CODES } from './data';
 
 @Component({
   selector: 'ngx-phone-input',
@@ -13,7 +19,9 @@ import {
   styleUrls: ['./phone-input.component.scss']
 })
 export class PhoneInputComponent implements OnInit {
+  public countryCodes: Array<string> = COUNTRY_CODES;
   public selectedCountry;
+  public phoneNumber = '';
   @ViewChild('menu')
   menu;
   @HostListener('document:click', ['$event.target'])
@@ -32,6 +40,7 @@ export class PhoneInputComponent implements OnInit {
 
   pickCountry(country) {
     this.selectedCountry = country;
+    this.phoneNumberChanged(this.phoneNumber);
     this.closeMenu();
   }
 
@@ -49,5 +58,35 @@ export class PhoneInputComponent implements OnInit {
 
   openMenu() {
     this.renderer.addClass(this.menu.nativeElement, 'show');
+  }
+
+  isCountrySelected(country): boolean {
+    return country === this.selectedCountry;
+  }
+
+  getCountryCallingCode(country) {
+    return getCountryCallingCode(country.toUpperCase());
+  }
+
+  phoneNumberChanged(number: string) {
+    if (this.selectedCountry) {
+      const asYouType = new AsYouType(this.selectedCountry.toUpperCase());
+      this.phoneNumber = asYouType.input(number);
+      try {
+        const phoneNumber = parsePhoneNumber(asYouType.getNumber().number);
+        console.log('phoneNumber', phoneNumber);
+        console.log('formatInternational', phoneNumber.formatInternational());
+        console.log('formatNational', phoneNumber.formatNational());
+        console.log('getURI', phoneNumber.getURI());
+        console.log('CountryCode');
+        console.log(
+          'asYouType',
+          new AsYouType(this.selectedCountry.toUpperCase()).input(
+            phoneNumber.getURI()
+          )
+        );
+      } catch (error) {
+      }
+    }
   }
 }
