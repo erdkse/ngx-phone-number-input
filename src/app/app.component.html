@@ -1,5 +1,14 @@
 <div class="container pt-5">
-  <div class="col-md-6">
-    <ngx-phone-input></ngx-phone-input>
+  <div class="row">
+    <div class="col-md-6">
+      <ngx-phone-input></ngx-phone-input>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let pick of picks">{{pick}}</li>
+      </ul>
+    </div>
   </div>
 </div>
