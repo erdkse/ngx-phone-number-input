@@ -4,21 +4,37 @@ import {
   ViewChild,
   Renderer2,
   HostListener,
-  ElementRef
+  ElementRef,
+  forwardRef,
+  ChangeDetectionStrategy,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import {
-  parsePhoneNumber,
+  parsePhoneNumberFromString,
   AsYouType,
   getCountryCallingCode
 } from 'libphonenumber-js';
 import { COUNTRY_CODES } from './data';
+import { countries, countriesIso } from './phoneCodeCountries';
+// import examples from 'libphonenumber-js/examples.mobile.json';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'ngx-phone-input',
   templateUrl: './phone-input.component.html',
-  styleUrls: ['./phone-input.component.scss']
+  styleUrls: ['./phone-input.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => PhoneInputComponent),
+      multi: true
+    }
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PhoneInputComponent implements OnInit {
+export class PhoneInputComponent
+  implements OnInit, OnChanges, ControlValueAccessor {
   public countryCodes: Array<string> = COUNTRY_CODES;
   public selectedCountry;
   public phoneNumber = '';
@@ -37,6 +53,12 @@ export class PhoneInputComponent implements OnInit {
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {}
 
   ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges): void {}
+  writeValue(obj: any): void {}
+  registerOnChange(fn: any): void {}
+  registerOnTouched(fn: any): void {}
+  setDisabledState?(isDisabled: boolean): void {}
 
   pickCountry(country) {
     this.selectedCountry = country;
@@ -72,21 +94,6 @@ export class PhoneInputComponent implements OnInit {
     if (this.selectedCountry) {
       const asYouType = new AsYouType(this.selectedCountry.toUpperCase());
       this.phoneNumber = asYouType.input(number);
-      try {
-        const phoneNumber = parsePhoneNumber(asYouType.getNumber().number);
-        console.log('phoneNumber', phoneNumber);
-        console.log('formatInternational', phoneNumber.formatInternational());
-        console.log('formatNational', phoneNumber.formatNational());
-        console.log('getURI', phoneNumber.getURI());
-        console.log('CountryCode');
-        console.log(
-          'asYouType',
-          new AsYouType(this.selectedCountry.toUpperCase()).input(
-            phoneNumber.getURI()
-          )
-        );
-      } catch (error) {
-      }
     }
   }
 }
