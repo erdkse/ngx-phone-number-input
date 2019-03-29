@@ -18,7 +18,7 @@ import {
 } from 'libphonenumber-js';
 import { countries, countriesIso } from './phoneCodeCountries';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import examples from 'libphonenumber-js/examples.mobile.json';
+import examples from './examples';
 
 @Component({
   selector: 'ngx-phone-input',

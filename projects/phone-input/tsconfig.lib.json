@@ -11,12 +11,14 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "resolveJsonModule": true,
     "types": [],
     "lib": [
       "dom",
       "es2015"
-    ]
+    ],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
