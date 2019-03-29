@@ -1,22 +1,24 @@
-<country-selector></country-selector>
-
-<!-- <div class="input-group">
+<div class="input-group" (keydown)="keyboardNav($event)">
   <div class="input-group-prepend">
-    <button class="btn btn-selected" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-      (click)="toggleMenu()">
-      <span *ngIf="selectedCountry" class="flag-icon mr-1" [ngClass]="'flag-icon-' + selectedCountry"></span>
-      <span *ngIf="!selectedCountry" class="mr-1">?</span>
+    <button class="btn btn-selected" [disabled]="disabled" type="button" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false" (focus)="onFocused()" (blur)="onBlured($event)" (click)="onCountrySelectionButtonClicked()">
+      <span class="flag-icon" [ngClass]="'flag-icon-' + selectedCountry.iso2.toLowerCase()"></span>
+      <span class="dial-code"> +{{selectedCountry.dialCode}}</span>
+      <span class="arrow" [ngStyle]="{'transform' : isMenuOpen ? '' : 'deg(180)'}">
+        ▼
+      </span>
     </button>
     <div #menu class="dropdown-menu">
-      <button class="dropdown-item" [ngClass]="{'selected': isCountrySelected(countryCode)}"
-        (click)="pickCountry(countryCode)" (keyup.enter)="pickCountry(countryCode)" type="button"
-        *ngFor="let countryCode of countryCodes">
-        <span class="flag-icon" [ngClass]="'flag-icon-' + countryCode"></span>
-        <span class="ml-2">{{countryCode}}</span>
-        <span class="ml-2 phone-code">+{{getCountryCallingCode(countryCode)}}</span>
-      </button>
+      <div class="dropdown-item"
+        [ngClass]="{'selected': selectedCountryIndex === i,'hovered':tempSelectedCountryIndex === i}"
+        (click)="pickCountry(country)" (keyup.enter)="pickCountry(country)"
+        *ngFor="let country of countries;let i = index;">
+        <span class="flag-icon" [ngClass]="'flag-icon-' + country.iso2.toLowerCase()"></span>
+        <span class="ml-2" style="font-size: 14px;">{{country.name}}</span>
+        <!-- <span class="ml-2 phone-code">+{{getCountryCallingCode(country.iso2)}}</span> -->
+      </div>
     </div>
   </div>
-  <input type="text" [value]="phoneNumber" (keyup)="phoneNumberChanged($event.target.value)" class="form-control"
-    aria-label="Text input with dropdown button">
-</div> -->
+  <input type="text" [value]="phoneNumber" [disabled]="disabled" (keyup)="phoneNumberChanged($event.target.value)"
+    class="form-control" placeholder="Phone number" aria-label="Text input with dropdown button">
+</div>

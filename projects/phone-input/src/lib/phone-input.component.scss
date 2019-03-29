@@ -2,25 +2,68 @@
   background-color: transparent;
   border: 1px solid #ced4da;
   min-width: 52px;
-  max-width: 52px;
+  padding: 0 4px 0 8px;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  .flag-icon {}
+
+  .dial-code {
+    font-size: 12px;
+  }
+
+  .arrow {
+    font-size: 12px;
+  }
+}
+
+.form-control {
+  font-size: 14px;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 .dropdown-menu {
   min-width: 14rem;
   padding: 0;
-  max-height: 300px;
+  max-height: 224px;
   overflow-y: scroll;
 
   .dropdown-item {
     padding: 0.25rem 0.75rem;
     cursor: pointer;
+    width: 240px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &:focus {
+      color: #fff;
+      text-decoration: none;
+      background-color: #800080;
+    }
+
+    &:active {
+      color: #fff;
+      text-decoration: none;
+      background-color: #800080;
+    }
   }
+}
+
+.hovered {
+  text-decoration: none;
+  background-color: #80008011;
 }
 
 .selected {
   color: #fff;
   text-decoration: none;
-  background-color: #007bff;
+  background-color: #800080;
 }
 
 .phone-code {
