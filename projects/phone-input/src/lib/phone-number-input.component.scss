@@ -8,10 +8,12 @@
     cursor: not-allowed;
   }
 
-  .flag-icon {}
+  .flag-icon {
+    font-size: 14px;
+  }
 
   .dial-code {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .arrow {
@@ -20,7 +22,7 @@
 }
 
 .form-control {
-  font-size: 14px;
+  // font-size: 14px;
 
   &:disabled {
     cursor: not-allowed;
