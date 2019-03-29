@@ -41,6 +41,10 @@
     white-space: nowrap;
     overflow: hidden;
 
+    .country-name {
+      font-size: 13px;
+    }
+
     &:focus {
       color: #fff;
       text-decoration: none;

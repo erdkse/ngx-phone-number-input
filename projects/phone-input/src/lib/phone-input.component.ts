@@ -18,6 +18,7 @@ import {
 } from 'libphonenumber-js';
 import { countries, countriesIso } from './phoneCodeCountries';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import examples from 'libphonenumber-js/examples.mobile.json';
 
 @Component({
   selector: 'ngx-phone-input',
@@ -36,7 +37,9 @@ export class PhoneInputComponent
   implements OnInit, OnChanges, ControlValueAccessor {
   @Input() disabled = false;
   @Input() defaultCountry;
+  @Input() placeholderText = 'Exp';
   public countries: Array<any> = countries;
+  public examples = <any>examples;
   public selectedCountry;
   public phoneNumber = '';
   public selectedCountryIndex = 0;
@@ -122,35 +125,36 @@ export class PhoneInputComponent
 
   keyboardNav(e) {
     const code = e.keyCode;
-    console.log(code);
     if (this.menu.nativeElement.classList.contains('show')) {
-      if (code === 40) {
+      if (code === 40 || code === 38) {
         this.tempSelectedCountryIndex =
-          this.tempSelectedCountryIndex >= this.countries.length - 1
-            ? this.countries.length - 1
-            : this.tempSelectedCountryIndex + 1;
-      }
-      if (code === 38) {
-        this.tempSelectedCountryIndex =
-          this.tempSelectedCountryIndex < 1
-            ? 0
+          code === 40
+            ? this.tempSelectedCountryIndex + 1
             : this.tempSelectedCountryIndex - 1;
-      }
 
-      if (code === 13) {
+        if (
+          this.tempSelectedCountryIndex === -1 ||
+          this.tempSelectedCountryIndex >= this.countries.length
+        ) {
+          this.tempSelectedCountryIndex =
+            this.tempSelectedCountryIndex === -1
+              ? this.countries.length - 1
+              : 0;
+        }
+
+        this.renderer.setProperty(
+          this.menu.nativeElement,
+          'scrollTop',
+          this.tempSelectedCountryIndex * this.itemHeight - this.itemHeight * 3
+        );
+      } else if (code === 13) {
         this.pickCountry(this.countries[this.tempSelectedCountryIndex]);
         e.preventDefault();
-      }
-
-      if (code === 27 || code === 9) {
+      } else if (code === 27 || code === 9) {
         this.onBlured(e);
+      } else {
+        //search countries
       }
-
-      this.renderer.setProperty(
-        this.menu.nativeElement,
-        'scrollTop',
-        this.tempSelectedCountryIndex * this.itemHeight - this.itemHeight * 3
-      );
     } else {
       if (this.isCountrySelectionFocused && code === 13) {
         this.openMenu();
@@ -179,19 +183,46 @@ export class PhoneInputComponent
   }
 
   getCountryCallingCode(country) {
-    return getCountryCallingCode(country.toUpperCase());
+    return getCountryCallingCode(country.iso2.toUpperCase());
   }
 
   phoneNumberChanged(number: string) {
-    if (this.selectedCountry) {
-      const asYouType = new AsYouType(this.selectedCountry.iso2.toUpperCase());
-      this.phoneNumber = asYouType.input(number);
-    }
+    const asYouType = new AsYouType(this.selectedCountry.iso2.toUpperCase());
+    this.phoneNumber = asYouType.input(number);
+    console.log(this.phoneNumber);
+  }
+
+  getAsYouTyped(number) {
+    const asYouType = new AsYouType(this.selectedCountry.iso2.toUpperCase());
+    return asYouType.input(number);
+  }
+
+  getParsePhoneNumberFromString({ phoneNumber, countryCode }) {
+    const parsing =
+      phoneNumber && countryCode
+        ? parsePhoneNumberFromString(phoneNumber, countryCode)
+        : null;
+    return {
+      phoneNumber: phoneNumber ? phoneNumber : null,
+      countryCode: countryCode,
+      isValid: false,
+      ...(parsing
+        ? {
+            formattedNumber: parsing.number,
+            nationalNumber: parsing.nationalNumber,
+            isValid: parsing.isValid(),
+            type: parsing.getType(),
+            formatInternational: parsing.formatInternational(),
+            formatNational: parsing.formatNational(),
+            uri: parsing.getURI(),
+            e164: parsing.format('E.164')
+          }
+        : null)
+    };
   }
 
   writeValue(obj: any): void {}
   registerOnChange(fn: any): void {}
   registerOnTouched(fn: any): void {}
   setDisabledState?(isDisabled: boolean): void {}
-  u;
 }
