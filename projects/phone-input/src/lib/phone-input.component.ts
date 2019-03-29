@@ -236,7 +236,10 @@ export class PhoneInputComponent
 
   writeValue(obj: any): void {
     this.phoneNumber = obj.phoneNumber;
-    this.selectedCountry = this.countries.find(c => c.dialCode == obj.dialCode);
+    const country = this.countries.find(c => c.dialCode == obj.dialCode);
+    if (country) {
+      this.pickCountry(country);
+    }
   }
   registerOnChange(fn: any): void {
     this.propagateChange = fn;

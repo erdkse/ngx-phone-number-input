@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
     this.formControl = new FormControl({
       value: {
         phoneNumber: '5532143599',
-        dialCode: '355'
+        dialCode: '237'
       },
       disabled: false
     });
