@@ -9,7 +9,8 @@ import {
   ChangeDetectionStrategy,
   OnChanges,
   SimpleChanges,
-  Input
+  Input,
+  ChangeDetectorRef
 } from '@angular/core';
 import {
   parsePhoneNumberFromString,
@@ -61,7 +62,11 @@ export class PhoneNumberInputComponent
     }
   }
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {}
+  constructor(
+    private renderer: Renderer2,
+    private elementRef: ElementRef,
+    private changeDetectionRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     if (this.defaultCountry) {
@@ -88,6 +93,7 @@ export class PhoneNumberInputComponent
         countryCode: this.selectedCountry.iso2
       })
     );
+    this.changeDetectionRef.markForCheck();
   }
 
   toggleMenu() {
@@ -148,6 +154,8 @@ export class PhoneNumberInputComponent
               ? this.countries.length - 1
               : 0;
         }
+
+        e.preventDefault();
 
         this.renderer.setProperty(
           this.menu.nativeElement,
