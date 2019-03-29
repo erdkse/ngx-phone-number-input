@@ -244,10 +244,12 @@ export class PhoneNumberInputComponent
   }
 
   writeValue(obj: any): void {
-    this.phoneNumber = obj.phoneNumber;
-    const country = this.countries.find(c => c.dialCode == obj.dialCode);
-    if (country) {
-      this.pickCountry(country);
+    if (obj) {
+      this.phoneNumber = obj.phoneNumber;
+      const country = this.countries.find(c => c.dialCode == obj.dialCode);
+      if (country) {
+        this.pickCountry(country);
+      }
     }
   }
   registerOnChange(fn: any): void {
