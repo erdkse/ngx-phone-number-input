@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { PhoneInputComponent } from './phone-input.component';
+import { PhoneNumberInputComponent } from './phone-number-input.component';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [PhoneInputComponent],
-  exports: [PhoneInputComponent]
+  declarations: [PhoneNumberInputComponent],
+  exports: [PhoneNumberInputComponent]
 })
-export class PhoneInputModule {}
+export class NgxPhoneNumberInputModule {}

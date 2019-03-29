@@ -13,16 +13,16 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.formControl = new FormControl({
       value: {
-        phoneNumber: '5532143599',
-        dialCode: '237'
+        phoneNumber: null,
+        dialCode: '90'
       },
       disabled: false
     });
 
+    this.values = Object.keys(this.formControl.value);
+
     this.formControl.valueChanges.subscribe(value => {
-      if (value) {
-        this.values = Object.keys(value);
-      }
+      this.values = Object.keys(value);
     });
   }
 }

@@ -21,19 +21,19 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import examples from './examples';
 
 @Component({
-  selector: 'ngx-phone-input',
-  templateUrl: './phone-input.component.html',
-  styleUrls: ['./phone-input.component.scss'],
+  selector: 'ngx-phone-number-input',
+  templateUrl: './phone-number-input.component.html',
+  styleUrls: ['./phone-number-input.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => PhoneInputComponent),
+      useExisting: forwardRef(() => PhoneNumberInputComponent),
       multi: true
     }
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PhoneInputComponent
+export class PhoneNumberInputComponent
   implements OnInit, OnChanges, ControlValueAccessor {
   @Input() disabled = false;
   @Input() defaultCountry;
@@ -217,6 +217,7 @@ export class PhoneInputComponent
         : null;
     return {
       phoneNumber: phoneNumber ? phoneNumber : null,
+      dialCode: this.selectedCountry.dialCode,
       countryCode: countryCode,
       isValid: false,
       ...(parsing
@@ -244,7 +245,9 @@ export class PhoneInputComponent
   registerOnChange(fn: any): void {
     this.propagateChange = fn;
   }
-  registerOnTouched(fn: any): void {}
+  registerOnTouched(fn: any): void {
+    // this.propagateChange = fn;
+  }
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
