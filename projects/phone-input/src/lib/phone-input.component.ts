@@ -47,6 +47,7 @@ export class PhoneInputComponent
   public itemHeight = 32;
   public isCountrySelectionFocused = false;
   public isMenuOpen = false;
+  public propagateChange = (_: any) => {};
 
   @ViewChild('menu')
   menu;
@@ -81,6 +82,12 @@ export class PhoneInputComponent
     this.tempSelectedCountryIndex = this.selectedCountryIndex;
     this.phoneNumberChanged(this.phoneNumber);
     this.closeMenu();
+    this.propagateChange(
+      this.getParsePhoneNumberFromString({
+        phoneNumber: this.phoneNumber,
+        countryCode: this.selectedCountry.iso2
+      })
+    );
   }
 
   toggleMenu() {
@@ -189,7 +196,13 @@ export class PhoneInputComponent
   phoneNumberChanged(number: string) {
     const asYouType = new AsYouType(this.selectedCountry.iso2.toUpperCase());
     this.phoneNumber = asYouType.input(number);
-    console.log(this.phoneNumber);
+
+    this.propagateChange(
+      this.getParsePhoneNumberFromString({
+        phoneNumber: this.phoneNumber,
+        countryCode: this.selectedCountry.iso2
+      })
+    );
   }
 
   getAsYouTyped(number) {
@@ -221,8 +234,15 @@ export class PhoneInputComponent
     };
   }
 
-  writeValue(obj: any): void {}
-  registerOnChange(fn: any): void {}
+  writeValue(obj: any): void {
+    this.phoneNumber = obj.phoneNumber;
+    this.selectedCountry = this.countries.find(c => c.dialCode == obj.dialCode);
+  }
+  registerOnChange(fn: any): void {
+    this.propagateChange = fn;
+  }
   registerOnTouched(fn: any): void {}
-  setDisabledState?(isDisabled: boolean): void {}
+  setDisabledState?(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
 }
