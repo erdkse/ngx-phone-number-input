@@ -8,8 +8,26 @@
 ![Libraries.io SourceRank](https://img.shields.io/librariesio/sourcerank/npm/ngx-phone-number-input.svg) 
 
 
-## Installation
+## Getting started
+### Step 1: Install:
 
+#### NPM
+```shell
+npm install --save ngx-phone-number-input
 ```
-npm install ngx-phone-number-input --save
+#### YARN
+```shell
+yarn add ngx-phone-number-input
+```
+### Step 2: Import the NgSelectModule and angular FormsModule module:
+```js
+import { NgxPhoneNumberInputModule } from 'ngx-phone-number-input';
+import { ReactiveFormsModule } from '@angular/forms';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [NgxPhoneNumberInputModule, ReactiveFormsModule],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
 ```
