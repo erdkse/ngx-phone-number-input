@@ -1,6 +1,28 @@
 {
   "name": "ngx-phone-number-input",
   "version": "0.0.5",
+  "license": "WTFPL",
+  "description": "a phone input",
+  "keywords": [
+    "phone",
+    "input",
+    "select",
+    "phone input",
+    "phone input select",
+    "angular"
+  ],
+  "author": {
+    "name": "Erdi Köse",
+    "email": "me@erdkse.com",
+    "url": "https://erdkse.com/"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "url": "https://github.com/erdkse/ngx-phone-number-input.git",
+    "type": "git"
+  },
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
