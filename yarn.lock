@@ -4200,6 +4200,15 @@ less@3.9.0, less@^3.8.0:
     request "^2.83.0"
     source-map "~0.6.0"
 
+libphonenumber-js@1.7.15:
+  version "1.7.15"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.7.15.tgz#2ad337e94c24cb810813554f6cf4a19f1246d3b9"
+  integrity sha512-FYqkPqPc8ZBAeGiCuU/4eKqvCyBP281DtayXoc+9XuRhgARn+CCTvy30VjfCevPROQkVxZKe2SfWj4d/3VrmVw==
+  dependencies:
+    minimist "^1.2.0"
+    semver-compare "^1.0.0"
+    xml2js "^0.4.17"
+
 libphonenumber-js@^1.7.15:
   version "1.7.18"
   resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.7.18.tgz#1f1ef1d9ed97c03b119e05728b6a301901e5e633"
@@ -4767,11 +4776,13 @@ ng-packagr@^5.0.1:
     terser "^3.16.1"
     update-notifier "^3.0.0"
 
-ngx-phone-number-input@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/ngx-phone-number-input/-/ngx-phone-number-input-0.0.5.tgz#a568f00bbca0d69447aae7f1e87f6c07ad4d633c"
-  integrity sha512-4Xd/bTaoGiUfmxQ4tOKvPPs5Vcv1JFi+LGfRx10v15/Q1WKVuKfN5wSwXcCqLzEyYMo0ZJF7+IyjwXSNPiS+UQ==
+ngx-phone-number-input@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/ngx-phone-number-input/-/ngx-phone-number-input-0.0.6.tgz#0197075af225f09bcf84ea1e0b72f0a8432f823f"
+  integrity sha512-aFisddwahqFfl5xjh6eIbTawJcseuuyDUfYtleAymV6o/Cf9rXFZCxQ7O5nvhz+M7MIKLRO0NYh6Fvk2HeQGNw==
   dependencies:
+    flag-icon-css "^3.2.0"
+    libphonenumber-js "1.7.15"
     tslib "^1.9.0"
 
 nice-try@^1.0.4:
@@ -6280,6 +6291,11 @@ selfsigned@^1.9.1:
   integrity sha512-9AukTiDmHXGXWtWjembZ5NDmVvP2695EtpgbCsxCa68w3c88B+alqbmZ4O3hZ4VWGXeGWzEVdvqgAJD8DQPCDw==
   dependencies:
     node-forge "0.7.5"
+
+semver-compare@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/semver-compare/-/semver-compare-1.0.0.tgz#0dee216a1c941ab37e9efb1788f6afc5ff5537fc"
+  integrity sha1-De4hahyUGrN+nvsXiPavxf9VN/w=
 
 semver-diff@^2.0.0:
   version "2.1.0"
