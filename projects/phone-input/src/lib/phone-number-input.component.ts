@@ -36,11 +36,11 @@ import examples from './examples';
 })
 export class PhoneNumberInputComponent
   implements OnInit, OnChanges, ControlValueAccessor {
-  @Input() disabled = false;
-  @Input() defaultCountry;
-  @Input() placeholderText = 'Exp';
   public countries: Array<any> = countries;
   public examples = <any>examples;
+  @Input() disabled = false;
+  @Input() defaultCountry = this.countries[0].iso2;
+  @Input() placeholderText = 'Exp';
   public selectedCountry;
   public phoneNumber = '';
   public selectedCountryIndex = 0;

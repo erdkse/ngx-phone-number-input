@@ -12,17 +12,25 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.formControl = new FormControl({
-      value: {
-        phoneNumber: null,
-        dialCode: '90'
-      },
+      value: null,
       disabled: false
     });
 
-    this.values = Object.keys(this.formControl.value);
+    if (this.formControl.value) {
+      this.values = Object.keys(this.formControl.value);
+    }
 
     this.formControl.valueChanges.subscribe(value => {
-      this.values = Object.keys(value);
+      if (value) {
+        this.values = Object.keys(value);
+      }
     });
+  }
+
+  disable() {
+    this.formControl.disable();
+  }
+  enable() {
+    this.formControl.enable();
   }
 }
