@@ -1,6 +1,6 @@
 {
   "name": "ngx-phone-number-input",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "WTFPL",
   "description": "a phone input",
   "keywords": [
@@ -23,10 +23,12 @@
     "url": "https://github.com/erdkse/ngx-phone-number-input.git",
     "type": "git"
   },
-  "peerDependencies": {
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+  "dependencies": {
     "flag-icon-css": "^3.2.0",
     "libphonenumber-js": "1.7.15"
+  },
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
   }
 }
