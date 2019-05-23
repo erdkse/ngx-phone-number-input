@@ -19,7 +19,7 @@ npm install --save ngx-phone-number-input
 ```shell
 yarn add ngx-phone-number-input
 ```
-### Step 2: Import the NgxPhoneNumberInputModule and angular ReactiveFormsModule module:
+### Step 2: Import the NgxPhoneNumberInputModule and ReactiveFormsModule module:
 ```js
 import { NgxPhoneNumberInputModule } from 'ngx-phone-number-input';
 import { ReactiveFormsModule } from '@angular/forms';
