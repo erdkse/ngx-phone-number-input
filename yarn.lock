@@ -2207,10 +2207,15 @@ di@^0.0.1:
   resolved "https://registry.yarnpkg.com/di/-/di-0.0.1.tgz#806649326ceaa7caa3306d75d985ea2748ba913c"
   integrity sha1-gGZJMmzqp8qjMG112YXqJ0i6kTw=
 
-diff@^3.1.0, diff@^3.2.0:
+diff@^3.2.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
   integrity sha512-A46qtFgd+g7pDZinpnwiRJtxbC1hpgf0uzP3iG89scHk0AUC7A1TGxf5OiiOUv/JMZR8GOt8hL900hV0bOy5xA==
+
+diff@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.1.tgz#0c667cb467ebbb5cea7f14f135cc2dba7780a8ff"
+  integrity sha512-s2+XdvhPCOF01LRQBC8hf4vhbVmI2CGS5aZnxLJlT5FtdhPCDFq80q++zK2KlrVorVDdL5BOGZ/VfLrVtYNF+Q==
 
 diffie-hellman@^5.0.0:
   version "5.0.3"
@@ -4204,18 +4209,6 @@ libphonenumber-js@1.7.15:
   version "1.7.15"
   resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.7.15.tgz#2ad337e94c24cb810813554f6cf4a19f1246d3b9"
   integrity sha512-FYqkPqPc8ZBAeGiCuU/4eKqvCyBP281DtayXoc+9XuRhgARn+CCTvy30VjfCevPROQkVxZKe2SfWj4d/3VrmVw==
-<<<<<<< HEAD
-=======
-  dependencies:
-    minimist "^1.2.0"
-    semver-compare "^1.0.0"
-    xml2js "^0.4.17"
-
-libphonenumber-js@^1.7.15:
-  version "1.7.18"
-  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.7.18.tgz#1f1ef1d9ed97c03b119e05728b6a301901e5e633"
-  integrity sha512-9qFKBTa2oVBY4fxvEu0f2ywwmldvZqOnWj1OTcCz4a7dTMMDC9tF1KVRIb01Bhl+39hfeGlzwQGTmd1NsRbRhQ==
->>>>>>> 5992293fffd059f3eb4bb7119368666c27154690
   dependencies:
     minimist "^1.2.0"
     semver-compare "^1.0.0"
@@ -7213,13 +7206,13 @@ trim-right@^1.0.1:
   dependencies:
     glob "^7.1.2"
 
-ts-node@~8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-8.1.0.tgz#8c4b37036abd448577db22a061fd7a67d47e658e"
-  integrity sha512-34jpuOrxDuf+O6iW1JpgTRDFynUZ1iEqtYruBqh35gICNjN8x+LpVcPAcwzLPi9VU6mdA3ym+x233nZmZp445A==
+ts-node@~8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-8.2.0.tgz#4a89754b00560bb24cd54526e1685fa38c45f240"
+  integrity sha512-m8XQwUurkbYqXrKqr3WHCW310utRNvV5OnRVeISeea7LoCWVcdfeB/Ntl8JYWFh+WRoUAdBgESrzKochQt7sMw==
   dependencies:
     arg "^4.1.0"
-    diff "^3.1.0"
+    diff "^4.0.1"
     make-error "^1.1.1"
     source-map-support "^0.5.6"
     yn "^3.0.0"
