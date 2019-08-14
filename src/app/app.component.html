@@ -1,15 +1,18 @@
 <div class="container pt-5" style="height: 100vh;">
   <div class="row">
     <div class="col-sm-12 col-md-6">
-      <ngx-phone-number-input [formControl]="formControl" [placeholderText]="'Exp'">
-      </ngx-phone-number-input>
+      <form [formGroup]="form">
+        <ngx-phone-number-input formControlName="phoneNumber" [placeholderText]="'Exp'" [defaultCountry]="'tr'">
+        </ngx-phone-number-input>
+      </form>
     </div>
   </div>
 
-  <div class="row mt-3">
+  <div class=" row mt-3">
     <div class="col-sm-12 col-md-6">
       <button class="btn btn-primary" (click)="disable()">Disable</button>
       <button class="btn btn-primary ml-1" (click)="enable()">Enable</button>
+      <button class="btn btn-primary ml-1" (click)="resetForm()">Reset</button>
     </div>
   </div>
 
@@ -17,7 +20,7 @@
     <div class="col-sm-12 col-md-6">
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let value of values">
-          {{value}} : {{formControl.value[value]}}
+          {{value}} :
         </li>
       </ul>
     </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,30 +7,36 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public formControl: FormControl;
   public values = [];
+  public form: FormGroup;
 
   ngOnInit() {
-    this.formControl = new FormControl({
-      value: null,
-      disabled: false
+    this.form = new FormGroup({
+      phoneNumber: new FormControl({
+        value: null,
+        disabled: false
+      })
     });
 
-    if (this.formControl.value) {
-      this.values = Object.keys(this.formControl.value);
+    if (this.form.controls.phoneNumber.value) {
+      this.values = Object.keys(this.form.controls.phoneNumber.value);
     }
 
-    this.formControl.valueChanges.subscribe(value => {
+    this.form.controls.phoneNumber.valueChanges.subscribe(value => {
       if (value) {
         this.values = Object.keys(value);
       }
     });
   }
 
+  resetForm() {
+    this.form.reset();
+  }
+
   disable() {
-    this.formControl.disable();
+    this.form.controls.phoneNumber.disable();
   }
   enable() {
-    this.formControl.enable();
+    this.form.controls.phoneNumber.enable();
   }
 }
