@@ -50,7 +50,7 @@ export class PhoneNumberInputComponent
   public isMenuOpen = false;
   public propagateChange = (_: any) => {};
 
-  @ViewChild('menu')
+  @ViewChild('menu', { static: true })
   menu;
   @HostListener('document:click', ['$event.target'])
   public onClick(targetElement) {
