@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "flag-icon-css": "^3.2.0",
-    "libphonenumber-js": "1.7.19"
+    "libphonenumber-js": "1.7.23"
   },
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^8.2.2",
